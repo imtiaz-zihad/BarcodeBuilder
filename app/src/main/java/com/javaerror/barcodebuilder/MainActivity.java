@@ -1,7 +1,10 @@
 package com.javaerror.barcodebuilder;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -22,6 +25,8 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         EditText editText = findViewById(R.id.edit_text);
         Button button = findViewById(R.id.button);
+        Button btn_scan = findViewById(R.id.btn_scan);
         ImageView imageView = findViewById(R.id.image);
         ImageView download = findViewById(R.id.download);
         //For animation
@@ -48,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
         Glide.with(this)
                         .load(R.drawable.gene)
                                 .into(imageView);
+
+        btn_scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scancode();
+            }
+        });
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -105,4 +118,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void scancode() {
+        ScanOptions options = new ScanOptions();
+        options.setPrompt("Volume up to flash on");
+        options.setBeepEnabled(true);
+        options.setOrientationLocked(true);
+        options.setCaptureActivity(CaptureAct.class);
+        barLaucher.launch(options);
+
+
+    }
+    ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(),result->{
+        if (result.getContents() != null){
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("Result");
+            builder.setMessage(result.getContents());
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            }).show();
+
+        }
+
+    });
 }

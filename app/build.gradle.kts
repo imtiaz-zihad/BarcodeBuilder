@@ -46,5 +46,6 @@ dependencies {
     coreLibraryDesugaring ("com.android.tools:desugar_jdk_libs:2.0.2")
     implementation ("com.github.bumptech.glide:glide:4.14.1")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.14.1")
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
 
 }
