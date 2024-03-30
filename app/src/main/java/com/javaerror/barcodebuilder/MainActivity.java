@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         EditText editText = findViewById(R.id.edit_text);
         Button button = findViewById(R.id.button);
-        Button btn_scan = findViewById(R.id.btn_scan);
+
         ImageView imageView = findViewById(R.id.image);
         ImageView download = findViewById(R.id.download);
         //For animation
@@ -54,13 +54,11 @@ public class MainActivity extends AppCompatActivity {
         Glide.with(this)
                         .load(R.drawable.gene)
                                 .into(imageView);
+        Glide.with(this)
+                .load(R.drawable.bb)
+                .into(download);
 
-        btn_scan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scancode();
-            }
-        });
+
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -119,29 +117,29 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void scancode() {
-        ScanOptions options = new ScanOptions();
-        options.setPrompt("Volume up to flash on");
-        options.setBeepEnabled(true);
-        options.setOrientationLocked(true);
-        options.setCaptureActivity(CaptureAct.class);
-        barLaucher.launch(options);
-
-
-    }
-    ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(),result->{
-        if (result.getContents() != null){
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setTitle("Result");
-            builder.setMessage(result.getContents());
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            }).show();
-
-        }
-
-    });
+//    private void scancode() {
+//        ScanOptions options = new ScanOptions();
+//        options.setPrompt("Volume up to flash on");
+//        options.setBeepEnabled(true);
+//        options.setOrientationLocked(true);
+//        options.setCaptureActivity(CaptureAct.class);
+//        barLaucher.launch(options);
+//
+//
+//    }
+//    ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(),result->{
+//        if (result.getContents() != null){
+//            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//            builder.setTitle("Result");
+//            builder.setMessage(result.getContents());
+//            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    dialog.dismiss();
+//                }
+//            }).show();
+//
+//        }
+//
+//    });
 }
