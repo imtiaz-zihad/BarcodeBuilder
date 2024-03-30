@@ -1,9 +1,12 @@
 package com.javaerror.barcodebuilder;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -18,10 +21,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class ImageToqr extends AppCompatActivity {
     Uri imageUri;
     ImageView img_profile,pickImage,image,download;
+    Button make ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +42,7 @@ public class ImageToqr extends AppCompatActivity {
         pickImage= findViewById(R.id.pickImage);
         image = findViewById(R.id.image);
         download = findViewById(R.id.download);
+        make = findViewById(R.id.button2);
 
         Glide.with(this)
                 .load(R.drawable.gene)
@@ -41,6 +51,25 @@ public class ImageToqr extends AppCompatActivity {
         Glide.with(this)
                 .load(R.drawable.bb)
                 .into(download);
+
+        make.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+
+                try {
+                    BitMatrix bitMatrix = multiFormatWriter.encode(String.valueOf(img_profile), BarcodeFormat.QR_CODE,300,300);
+                    BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                    Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                    image.setImageBitmap(bitmap);
+
+                }catch (WriterException e){
+                    throw new RuntimeException(e);
+                }
+
+            }
+        });
 
         pickImage.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
