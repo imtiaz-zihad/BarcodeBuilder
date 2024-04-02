@@ -59,9 +59,7 @@ public class ImageToqr extends AppCompatActivity {
                 .load(R.drawable.gene)
                 .into(image);
 
-        Glide.with(this)
-                .load(R.drawable.bb)
-                .into(download);
+
 
         make.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,8 +87,16 @@ public class ImageToqr extends AppCompatActivity {
 
 
         download.setOnClickListener(new View.OnClickListener() {
+
+
+
             @Override
             public void onClick(View v) {
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.bb)
+                        .into(download);
+
+
                 bitmapDrawable = (BitmapDrawable) image.getDrawable();
                 bitmaps=bitmapDrawable.getBitmap();
 
@@ -121,8 +127,12 @@ public class ImageToqr extends AppCompatActivity {
                 }
 
 
+
+
             }
+
         });
+
 
     }
 
