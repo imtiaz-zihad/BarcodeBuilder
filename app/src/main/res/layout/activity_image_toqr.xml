@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ImageToqr">
+    tools:context=".ImageToqr"
+    android:background="#C155CDDD">
 
     <ImageView
         android:id="@+id/img_profile"
