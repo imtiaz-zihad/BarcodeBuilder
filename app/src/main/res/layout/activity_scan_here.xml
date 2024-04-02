@@ -9,12 +9,30 @@
 
     <ImageView
         android:id="@+id/scan"
-        android:layout_width="415dp"
-        android:layout_height="413dp"
+        android:layout_width="376dp"
+        android:layout_height="192dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.466"
         app:srcCompat="@drawable/photo" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="Tap To Scan "
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/scan"
+        app:layout_constraintHorizontal_bias="0.626"
+        app:layout_constraintStart_toStartOf="@+id/scan"
+        app:layout_constraintTop_toBottomOf="@+id/scan"
+        app:layout_constraintVertical_bias="0.067" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
