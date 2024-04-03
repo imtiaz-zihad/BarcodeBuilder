@@ -184,12 +184,13 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginStart="18dp"
         android:layout_marginEnd="18dp"
-        app:cardCornerRadius="28dp"
         android:backgroundTint="#EBFFFFFF"
+        app:cardCornerRadius="28dp"
         app:layout_constraintBottom_toTopOf="@+id/fromText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -204,5 +205,19 @@
             app:srcCompat="@drawable/blog_cover"
             tools:layout_editor_absoluteX="60dp" />
     </androidx.cardview.widget.CardView>
+
+    <Switch
+        android:id="@+id/mode"
+        android:layout_width="61dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="16dp"
+        android:thumb="@drawable/thumb"
+        android:track="@drawable/bg_track"
+        app:layout_constraintBottom_toBottomOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

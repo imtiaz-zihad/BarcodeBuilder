@@ -83,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Glide.with(getApplicationContext())
+                        .load(R.drawable.bb)
+                        .into(download);
+
                 bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
                 bitmaps=bitmapDrawable.getBitmap();
 
